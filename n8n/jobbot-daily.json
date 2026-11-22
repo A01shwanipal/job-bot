@@ -1,0 +1,21 @@
+{
+  "name": "JobBot daily 9AM IST",
+  "nodes": [
+    {
+      "parameters": {"rule": {"interval": [{"field": "cronExpression", "expression": "0 9 * * *"}]}},
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [0, 0]
+    },
+    {
+      "parameters": {"command": "cmd /c \"C:\\\\path\\\\to\\\\job-bot\\\\scripts\\\\run_daily.bat\""},
+      "name": "Run JobBot",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [260, 0]
+    }
+  ],
+  "connections": {"Schedule Trigger": {"main": [[{"node": "Run JobBot", "type": "main", "index": 0}]]}},
+  "settings": {"timezone": "Asia/Kolkata"}
+}

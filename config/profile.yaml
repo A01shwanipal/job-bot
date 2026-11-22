@@ -1,0 +1,52 @@
+# Everything here is used to fill forms and write messages. Make it match your resume EXACTLY.
+# Set verified: true only after you have checked every line. The bot refuses to apply until then.
+verified: false
+
+personal:
+  full_name: "Ashwani Pal"
+  first_name: "Ashwani"
+  last_name: "Pal"
+  city: "Gurugram, Haryana, India"
+  # email and phone come from .env (PROFILE_EMAIL, PROFILE_PHONE)
+
+links:
+  portfolio: "https://portfolioo-taupe-rho.vercel.app/"
+  linkedin: "https://www.linkedin.com/in/ashwanipal7"
+  # github comes from .env (GITHUB_URL)
+
+resume_path: "resume/resume.pdf"
+
+headline: "fresher Java / Spring Boot backend developer (B.Tech CSE, Sage University Bhopal, 2026)"
+
+experience:
+  - "software development internship at Naman Digital Pvt. Ltd. (Jul-Sep 2026)"
+
+projects:                      # summaries are inserted verbatim - keep them factual
+  - name: "Gym Management System"
+    summary: "a full-stack application built with React, Java, Spring Boot microservices and MySQL"
+    tech: [react, java, spring boot, microservices, mysql]
+  - name: "GateKeeper"
+    summary: "a custom API gateway"
+    tech: [api, gateway, java, spring boot, microservices]
+  - name: "Student CRM system"
+    summary: "a student CRM system"
+    tech: [crm, java, spring boot, mysql]
+
+skills:                        # only skills you genuinely have. weight = importance for scoring
+  - {name: "Java",                    weight: 3,   aliases: ["java", "core java", "java 8", "java 11", "java 17"]}
+  - {name: "Spring Boot",             weight: 3,   aliases: ["spring boot", "springboot", "spring framework", "spring mvc", "spring"]}
+  - {name: "Microservices",           weight: 2,   aliases: ["microservices", "microservice"]}
+  - {name: "REST APIs",               weight: 2,   aliases: ["rest", "restful", "rest api", "rest apis"]}
+  - {name: "MySQL",                   weight: 2,   aliases: ["mysql", "sql"]}
+  - {name: "React",                   weight: 1.5, aliases: ["react", "reactjs", "react.js"]}
+  - {name: "JavaScript",              weight: 1,   aliases: ["javascript", "js"]}
+  - {name: "HTML",                    weight: 0.5, aliases: ["html", "html5"]}
+  - {name: "CSS",                     weight: 0.5, aliases: ["css", "css3"]}
+
+target_roles: ["Java Developer", "Backend Developer", "Full Stack Developer", "Spring Boot Developer"]
+
+preferred_locations: ["noida", "delhi", "new delhi", "ncr", "delhi ncr", "gurugram", "gurgaon", "ghaziabad", "faridabad", "greater noida"]
+
+exclude_title_keywords: ["senior", "sr", "sr.", "lead", "principal", "staff", "architect", "manager", "director",
+                         "head", "vp", "sde 2", "sde ii", "sde-2", "sde iii", "engineer ii", "developer ii",
+                         "engineer iii", "consultant", "intern"]

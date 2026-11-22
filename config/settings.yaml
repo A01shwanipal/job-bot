@@ -1,0 +1,35 @@
+timezone: Asia/Kolkata
+schedule_time: "09:00"        # informational - the real trigger is Task Scheduler / n8n / GitHub Actions
+
+search:
+  max_jobs_per_day: 50        # size of the daily shortlist
+  max_age_days: 3             # ignore postings older than this (undated postings are kept)
+  min_score: 55               # 0-100, below this = "low_match"
+  max_required_years: 2       # skip roles demanding more experience than this
+  skill_reference_weight: 8   # skill points needed for full skill score
+  adzuna_queries: ["java developer", "spring boot developer", "backend developer", "full stack developer"]
+  adzuna_locations: ["Noida", "Gurgaon", "New Delhi", "Ghaziabad", "Faridabad"]
+
+sources:                      # all free
+  greenhouse: true            # public company career-board API (companies.yaml)
+  lever: true                 # public company career-board API (companies.yaml)
+  ashby: true                 # public company career-board API (companies.yaml)
+  adzuna: false               # needs free key in .env, then set true
+  remoteok: true              # public API, remote jobs
+  remotive: true              # public API, remote jobs
+
+apply:
+  enabled: false              # scheduled run will also try to apply (start with false!)
+  auto_submit: false          # false = fill the form, YOU click Submit
+  headless: true              # `python -m jobbot apply` forces a visible browser unless --headless
+  max_per_day: 10
+  delay_seconds: [25, 60]     # random pause between applications
+  one_application_per_company_days: 30
+
+notifications:
+  email: false
+  telegram: false
+
+manual_search:                # deep links for portals that forbid scraping (opened by YOU)
+  roles: ["Java Developer", "Spring Boot Developer", "Backend Developer", "Full Stack Developer"]
+  locations: ["Noida", "Gurugram", "Delhi NCR"]

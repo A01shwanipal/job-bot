@@ -1,0 +1,38 @@
+# OPTIONAL and PRIVATE-REPO ONLY. Runs search + scoring + summary (never applies) at 09:00 IST (03:30 UTC).
+# Needs repo secrets: PROFILE_EMAIL, PROFILE_PHONE, GITHUB_URL, and optionally ADZUNA_*, SMTP_*, MAIL_TO, TELEGRAM_*.
+name: daily-job-search
+on:
+  schedule:
+    - cron: "30 3 * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  search:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests PyYAML python-dotenv python-dateutil pandas
+      - run: python -m jobbot run --no-apply
+        env:
+          PROFILE_EMAIL: ${{ secrets.PROFILE_EMAIL }}
+          PROFILE_PHONE: ${{ secrets.PROFILE_PHONE }}
+          GITHUB_URL: ${{ secrets.GITHUB_URL }}
+          ADZUNA_APP_ID: ${{ secrets.ADZUNA_APP_ID }}
+          ADZUNA_APP_KEY: ${{ secrets.ADZUNA_APP_KEY }}
+          SMTP_HOST: ${{ secrets.SMTP_HOST }}
+          SMTP_USER: ${{ secrets.SMTP_USER }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          MAIL_TO: ${{ secrets.MAIL_TO }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+      - name: Save database back to the (private) repo
+        run: |
+          git config user.name "jobbot"
+          git config user.email "jobbot@users.noreply.github.com"
+          git add -f data/jobs.db
+          if ! git diff --cached --quiet; then git commit -m "update job database" && git push; fi
