@@ -1,0 +1,17 @@
+.venv/
+data/
+logs/
+resume/*.pdf
+resume/.gitkeep
+__pycache__/
+*.db
+.env
+.env.example
+.git/
+jobbot/
+dashboard/
+scripts/
+tests/
+n8n/
+config/
+.github/
